@@ -4,14 +4,17 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import listReducer from './slices/listSlices';
+import modalReducer from "./slices/modalSlices"
 
 const persistConfig = {
     key: 'root',
     storage,
+    blacklist: ['modal']
 };
 
 const rootReducer = combineReducers({
     list: listReducer,
+    modal: modalReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
