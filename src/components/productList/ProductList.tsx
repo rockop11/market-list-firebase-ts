@@ -1,4 +1,4 @@
-import { Box, Divider, Typography } from "@mui/material"
+import { Box, Button, Divider, Typography } from "@mui/material"
 import { useAppSelector } from "../../app/store"
 import { ProductListItem } from "../productListItem/ProductListItem"
 
@@ -11,7 +11,10 @@ export const ProductList = () => {
 		<Box
 			component='section'
 		>
-			<Typography variant="h5">Total: ${totalPrice.toFixed(2)}</Typography>
+			<Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+				<Typography variant="h5">Total: ${totalPrice.toFixed(2)}</Typography>
+				<Button variant="contained" color="error">Borrar Lista</Button>
+			</Box>
 			<Divider sx={{ marginBottom: '10px' }} />
 			<Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
 				{
