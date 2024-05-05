@@ -1,53 +1,36 @@
-import { Box, Button, Typography } from "@mui/material"
-import { useAppDispatch } from "../../app/store"
+import { Dialog, DialogTitle, DialogActions, Button } from "@mui/material"
 import { closeModal } from "../../app/slices/modalSlices"
+import { useAppDispatch } from "../../app/store"
 
-interface Props {
-    title: string,
-    actionButtonValue: string
-    actionButtonHandler: () => void
+interface ModalProps {
+    open: boolean,
+    dialogTitle: string
+    buttonColor: string
+    buttonValue: string
+    handler: () => void
 }
 
-export const Modal = ({ title, actionButtonValue, actionButtonHandler }: Props) => {
+export const Modal = ({ open, dialogTitle, buttonColor, buttonValue, handler }: ModalProps) => {
     const dispatch = useAppDispatch()
 
-    const closeModalHandler = () => {
-        dispatch(closeModal())
-    }
-
     return (
-        <Box sx={{
-            border: '1px solid red',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: '100vh',
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        }}>
-            <Box sx={{
-                position: 'absolute',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                border: '1px solid black',
-                backgroundColor: 'white',
-                padding: '20px',
-                width: '70%',
-                textAlign: 'center',
-                borderRadius: '10px'
-            }}>
-                <Typography variant='h6'>{title}</Typography>
+        <Dialog open={open}>
+            <DialogTitle>{dialogTitle}</DialogTitle>
 
-                <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-                    <Button variant='contained' onClick={closeModalHandler}>Cerrar</Button>
+            <DialogActions>
+                <Button
+                    variant="contained"
+                    onClick={handler}
+                    sx={{ background: `${buttonColor}` }}>
+                    {buttonValue}
+                </Button>
 
-                    <Button variant='contained' onClick={actionButtonHandler}>{actionButtonValue}</Button>
-                </Box>
-            </Box>
-        </Box>
+                <Button
+                    variant="contained"
+                    onClick={() => dispatch(closeModal())}>
+                    Cerrar
+                </Button>
+            </DialogActions>
+        </Dialog>
     )
 }

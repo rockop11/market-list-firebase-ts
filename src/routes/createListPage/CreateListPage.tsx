@@ -8,7 +8,7 @@ export const CreateListPage = () => {
         <Box>
             <Grid container spacing={2}>
 
-                <Grid item>
+                <Grid item xs={12}> 
                     <CreateListForm />
                 </Grid>
 

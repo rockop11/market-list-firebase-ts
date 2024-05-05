@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import { useAppDispatch } from "../../app/store"
 import { addProductToList, addPrice } from "../../app/slices/listSlices"
 import { initialValues, validationSchema } from './CreateListFormSchema';
-import { FormGroup, FormControl, TextField, Button, Typography, Grid } from "@mui/material"
+import { FormGroup, FormControl, TextField, Button, Typography, Grid, Box } from "@mui/material"
 
 interface formValues {
     productName: string;
@@ -38,7 +38,7 @@ export const CreateListForm = () => {
 
 
     return (
-        <>
+        <Box>
             <form onSubmit={formik.handleSubmit}>
                 <FormGroup>
                     <FormControl sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row', width: '100%' }}>
@@ -92,6 +92,6 @@ export const CreateListForm = () => {
                     </Grid>
                 </FormGroup>
             </form>
-        </>
+        </Box>
     )
 }
